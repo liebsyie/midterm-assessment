@@ -22,7 +22,7 @@ This project demonstrates how **all three** authentication methods are **vulnera
 |------------|-----------------------|--------------------------------------------|
 | Member 1   | Presenter / Leader    | Introduction, explains 3 methods, wrap-up |
 | Member 2   | Demo Handler          | Handles screen sharing & live demo        |
-| Member 3   | Code Explainer        | Opens VS Code and explains vulnerable code|
+| Member 3   | Code Explainer        | See VS Code and explains vulnerable code|
 
 ---
 
