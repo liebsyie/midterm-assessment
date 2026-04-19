@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: #e8eaf0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .card {
+    width: min(900px, 98vw);
+    min-height: 520px;
+    background: #fff;
+    border-radius: 24px;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.14);
+    position: relative;
+  }
+
+  /* LEFT PANEL */
+  .left {
+    flex: 1;
+    padding: 44px 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
+    background: #fff;
+    min-width: 0;
+  }
+
+  .left h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #1a1a2e;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .input-group {
+    background: #f0f2f8;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding: 12px 18px;
+    margin-bottom: 12px;
+    gap: 12px;
+    box-shadow: inset 2px 2px 6px rgba(0,0,0,0.06);
+    transition: box-shadow 0.2s;
+  }
+
+  .input-group:focus-within {
+    box-shadow: inset 2px 2px 6px rgba(0,0,0,0.06), 0 0 0 2px #7c3aed33;
+  }
+
+  .input-group .icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .input-group .icon svg { width: 16px; height: 16px; fill: #fff; }
+
+  .input-group input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    color: #444;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .input-group input::placeholder { color: #aaa; }
+
+  .eye-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #7c3aed;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .terms {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 4px 18px;
+    font-size: 12px;
+    color: #888;
+  }
+
+  .terms input[type="checkbox"] { accent-color: #7c3aed; width: 15px; height: 15px; flex-shrink: 0; }
+  .terms a { color: #7c3aed; font-weight: 700; text-decoration: none; }
+
+  .btn-create {
+    width: 100%;
+    padding: 14px;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(135deg, #6a11cb, #7c3aed);
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    box-shadow: 0 4px 18px rgba(108,49,255,0.35);
+  }
+
+  .btn-create:hover { opacity: 0.92; transform: translateY(-1px); }
+  .btn-create:active { transform: translateY(0); }
+
+  .signin-link {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 13px;
+    color: #999;
+  }
+
+  .signin-link a { color: #7c3aed; font-weight: 700; text-decoration: none; }
+
+  /* METHOD SELECTOR */
+  .method-label {
+    text-align: center;
+    font-size: 9px;
+    color: #bbb;
+    margin-bottom: 6px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+
+  .method-selector {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .method-btn {
+    padding: 5px 11px;
+    border-radius: 20px;
+    border: 2px solid #e0e0e0;
+    background: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #999;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .method-btn.active {
+    background: linear-gradient(135deg, #6a11cb, #7c3aed);
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(108,49,255,0.3);
+  }
+
+  .method-btn:hover:not(.active) { border-color: #7c3aed; color: #7c3aed; }
+
+  /* RIGHT PANEL */
+  .right {
+    flex: 1;
+    background: linear-gradient(140deg, #8b2fc9 0%, #6a11cb 40%, #2575fc 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  /* Wavy cloud border from left */
+  .cloud-edge {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 130px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* Bottom cloud decoration */
+  .cloud-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Top cloud decoration */
+  .cloud-top {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70%;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.18;
+  }
+
+  .right-text {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    width: 240px;
+    margin-left: 40px;
+    padding: 20px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .right-text h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+
+  .right-text p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.75;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <!-- LEFT: Sign Up Form -->
+  <div class="left">
+    <h1>Hello, friend!</h1>
+
+    <div class="method-label">Select Auth Method</div>
+    <div class="method-selector">
+      <button class="method-btn active" onclick="setMethod('procedural', this)">MySQLi Procedural</button>
+      <button class="method-btn" onclick="setMethod('oop', this)">MySQLi OOP</button>
+      <button class="method-btn" onclick="setMethod('pdo', this)">PDO</button>
+    </div>
+
+    <form id="signupForm" action="register_procedural.php" method="POST">
+      <input type="hidden" name="method" id="methodInput" value="procedural">
+
+      <div class="input-group">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        </div>
+        <input type="text" name="username" placeholder="Name" required>
+      </div>
+
+      <div class="input-group">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </div>
+        <input type="email" name="email" placeholder="E-mail" required>
+      </div>
+
+      <div class="input-group">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.8-2.2-5-5-5S7 3.2 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.7 1.4-3.1 3.1-3.1 1.7 0 3.1 1.4 3.1 3.1v2z"/></svg>
+        </div>
+        <input type="password" name="password" id="signupPass" placeholder="Password" required>
+        <button type="button" class="eye-btn" onclick="togglePass('signupPass')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+      </div>
+
+      <div class="terms">
+        <input type="checkbox" required> I read and agree to <a href="#">Terms &amp; Conditions</a>
+      </div>
+
+      <button type="submit" class="btn-create">CREATE ACCOUNT</button>
+    </form>
+
+    <div class="signin-link">Already have an account? <a href="signin.html">Sign in</a></div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="right">
+    <!-- Wavy edge from left -->
+    <svg class="cloud-edge" viewBox="0 0 130 520" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 L75,0 Q50,26 82,52 Q114,78 68,110 Q28,138 78,168 Q118,194 65,224 Q18,250 68,280 Q112,308 62,338 Q18,364 76,394 Q118,420 68,452 Q30,478 78,504 Q95,514 80,520 L0,520 Z" fill="white"/>
+    </svg>
+
+    <!-- Top decorative cloud -->
+    <svg class="cloud-top" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+      <path d="M400,0 L400,60 Q370,30 340,50 Q310,70 280,40 Q250,10 220,35 Q190,58 160,30 Q130,5 100,28 Q70,50 40,20 Q20,5 0,15 L0,0 Z" fill="white"/>
+    </svg>
+
+    <!-- Bottom decorative cloud -->
+    <svg class="cloud-bottom" viewBox="0 0 500 90" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,90 L0,55 Q40,25 80,48 Q120,70 160,38 Q200,8 240,40 Q280,68 320,35 Q360,5 400,32 Q440,58 500,30 L500,90 Z" fill="white" opacity="0.18"/>
+    </svg>
+
+    <div class="right-text">
+      <h2>Glad to see you!</h2>
+      <p>Create your account and explore a world of possibilities. Join us today!</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function setMethod(method, btn) {
+  document.querySelectorAll('.method-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('methodInput').value = method;
+  const actions = {
+    procedural: 'register_procedural.php',
+    oop: 'register_oop.php',
+    pdo: 'register_pdo.php'
+  };
+  document.getElementById('signupForm').action = actions[method];
+}
+
+function togglePass(id) {
+  const el = document.getElementById(id);
+  el.type = el.type === 'password' ? 'text' : 'password';
+}
+</script>
+</body>
+</html>
