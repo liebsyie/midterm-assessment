@@ -84,3 +84,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     mysqli_close($conn);
 }
 ?>
+
+// Vulnerable (among gibuhat):
+// Directly inserts user input into the SQL query.
+// This is unsafe because hackers can use SQL Injection.
+$query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+
+// Secure (prepared statement):
+// Uses placeholders (?) instead of directly inserting values.
+// bind_param() safely binds the username and password.
+// This prevents SQL Injection attacks.
+$stmt = $conn->prepare("SELECT * FROM users WHERE username=? AND password=?");
+$stmt->bind_param("ss", $username, $password);
+$stmt->execute();
