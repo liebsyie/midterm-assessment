@@ -14,18 +14,6 @@ This project demonstrates how **all three** authentication methods are **vulnera
 - Dashboard after successful login
 - Plain-text password (for easier SQLi demonstration)
 
----
-
-## 👥 Group Members & Roles
-
-| Member     | Role                  | Tasks During Presentation                  |
-|------------|-----------------------|--------------------------------------------|
-| Member 1   | Presenter / Leader    | Introduction, explains 3 methods, wrap-up |
-| Member 2   | Demo Handler          | Handles screen sharing & live demo        |
-| Member 3   | Code Explainer        | See VS Code and explains vulnerable code|
-
----
-
 ## 🛠️ Technologies Used
 - **PHP** (MySQLi Procedural, MySQLi OOP, PDO)
 - **MySQL** (via phpMyAdmin)
